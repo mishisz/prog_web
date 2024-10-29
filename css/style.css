@@ -82,8 +82,19 @@ body {
 
 #dialog-ponto {
     background-color: rgb(255, 216, 238);
-    color: rgb(0, 0, 0); /* Set text color to black or any color you prefer */
-    border-radius: 8px; /* Optional: add rounded corners */
-    padding: 20px; /* Optional: add padding */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#btn-visualizar-relatorio {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(173, 101, 146);
+    color: white;
+    font-size: 1.3rem;
+    border: 0px;
+    text-align: center;
 }
