@@ -145,3 +145,11 @@ function printCurrentHour() {
 
 printCurrentHour();
 setInterval(printCurrentHour, 1000);
+
+const inputDataRegistro = document.getElementById("data-registro");
+inputDataRegistro.setAttribute("max", getCurrentDateInputFormat());
+
+function getCurrentDateInputFormat() {
+    const date = new Date();
+    return date.toISOString().split('T')[0]; // Retorna data no formato "yyyy-mm-dd"
+}
