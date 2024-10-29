@@ -1,6 +1,3 @@
-// TO-DO:
-// Organizar código-fonte
-
 const diaSemana = document.getElementById("dia-semana");
 const diaMesAno = document.getElementById("dia-mes-ano");
 const horaMinSeg = document.getElementById("hora-min-seg");
@@ -48,8 +45,6 @@ async function getCurrentPosition() {
     });
 }
 
-// TO-DO:
-// Problema: os 5 segundos continuam contando
 const btnCloseAlertRegister = document.getElementById("alerta-registro-ponto-fechar");
 btnCloseAlertRegister.addEventListener("click", () => {
     divAlertaRegistroPonto.classList.remove("show");
@@ -109,8 +104,6 @@ function getRegisterLocalStorage() {
     return JSON.parse(registers); 
 }
 
-// TO-DO:
-// alterar o nome da função
 function register() {
     dialogData.textContent = "Data: " + getCurrentDate();
     dialogHora.textContent = "Hora: " + getCurrentHour();
@@ -123,8 +116,6 @@ function register() {
         document.getElementById("dialog-last-register").textContent = lastRegisterText;
     }
 
-    // TO-DO
-    // Como "matar" o intervalo a cada vez que o dialog é fechado?
     setInterval(() => {
         dialogHora.textContent = "Hora: " + getCurrentHour();
     }, 1000);
