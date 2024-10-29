@@ -3,12 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Horários</title>
+    <title>Relatório</title>
+    <style>
+        body {
+            background-color: rgb(255, 216, 238);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        #search-input {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Relatório de Horários</h1>
-    <div id="report-container"></div>
+    <h1>Relatório</h1>
+    <input type="date" id="search-input" placeholder="Pesquisar...">
+    <div id="dates-and-times"></div>
 
-    <script src="report.js"></script>
+    <script>
+        function displayDatesAndTimes() {
+            const datesAndTimesDiv = document.getElementById('dates-and-times');
+            const datesAndTimes = [];
+
+            for (let i = 0; i < 5; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const time = date.toLocaleTimeString();
+                datesAndTimes.push(`${date.toLocaleDateString()} - ${time}`);
+            }
+
+            datesAndTimes.forEach((dateTime, index) => {
+                const p = document.createElement('p');
+                p.textContent = `Registro ${index + 1}: ${dateTime}`;
+                p.style.display = 'inline-block';
+                p.style.marginRight = '10px';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Excluir';
+                deleteButton.style.marginLeft = '10px';
+                deleteButton.addEventListener('click', function() {
+                    if (confirm('Tem certeza que deseja excluir este registro?')) {
+                        p.remove();
+                    }
+                });
+
+                p.appendChild(deleteButton);
+                datesAndTimesDiv.appendChild(p);
+            });
+
+            document.getElementById('search-input').addEventListener('input', function() {
+                const searchValue = this.value.toLowerCase();
+                const pElements = datesAndTimesDiv.getElementsByTagName('p');
+
+                for (let i = 0; i < pElements.length; i++) {
+                    const text = pElements[i].textContent.toLowerCase();
+                    pElements[i].style.display = text.includes(searchValue) ? 'block' : 'none';
+                }
+            });
+        }
+
+        displayDatesAndTimes();
+    </script>
 </body>
 </html>

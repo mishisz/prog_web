@@ -155,3 +155,23 @@ function getCurrentDateInputFormat() {
     const date = new Date();
     return date.toISOString().split('T')[0]; // Retorna data no formato "yyyy-mm-dd"
 }
+
+document.getElementById('btn-dialog-bater-ponto').addEventListener('click', function() {
+    const dataRegistro = document.getElementById('data-registro').value;
+    const tipoPonto = document.getElementById('tipos-ponto').value;
+    const observacao = document.getElementById('obs').value;
+
+    // Send dataRegistro, tipoPonto, and observacao to the server or process it as needed
+});
+document.getElementById('obs-image').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const image = document.createElement('img');
+            image.src = e.target.result;
+            document.getElementById('dialog-ponto').appendChild(image);
+        };
+        reader.readAsDataURL(file);
+    }
+});

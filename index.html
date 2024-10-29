@@ -27,6 +27,25 @@
         <p id="dialog-hora"></p>
         <label for="date-picker">Escolha a data:</label>
         <input type="date" id="data-registro">
+        <label for="obs">Observação:</label>
+        <textarea id="obs" rows="4" cols="50"></textarea>
+        <label for="obs-image">Imagem:</label>
+        <input type="file" id="obs-image" accept="image/*">
+        <select name="tipos-ponto" id="tipos-ponto">
+            <option value="entrada">Entrada</option>
+            <option value="intervalo">Intervalo</option>
+            <option value="volta-intervalo">Volta Intervalo</option>
+            <option value="saida">Saída</option>
+        </select>
+        <button id="btn-dialog-bater-ponto">Registrar ponto</button>
+        <p id="dialog-last-register"></p>
+        <button id="btn-dialog-fechar">X</button>
+    </dialog>
+    <dialog id="dialog-ponto">
+        <p id="dialog-data"></p>
+        <p id="dialog-hora"></p>
+        <label for="date-picker">Escolha a data:</label>
+        <input type="date" id="data-registro">
 
         <select name="tipos-ponto" id="tipos-ponto">
             <option value="entrada">Entrada</option>
@@ -38,8 +57,15 @@
         <p id="dialog-last-register"></p>
         <button id="btn-dialog-fechar">X</button>
     </dialog>
-    <!-- TO-DO: -->
-    <!-- criar histórico dos últimos n registros-->
     <script src="js/index.js"></script>
+
+    <button id="btn-visualizar-relatorio">Visualizar Relatório</button>
+
+    <script>
+        // Add an event listener to the button
+        document.getElementById('btn-visualizar-relatorio').addEventListener('click', function() {
+            window.location.href = 'report.html';
+        });
+    </script>
 </body>
 </html>
