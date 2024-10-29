@@ -34,44 +34,64 @@
     <script>
         function displayDatesAndTimes() {
             const datesAndTimesDiv = document.getElementById('dates-and-times');
-            const datesAndTimes = [];
+            const datesAndTimes = {};
 
             for (let i = 0; i < 5; i++) {
                 const date = new Date();
                 date.setDate(date.getDate() - i);
+                const dateString = date.toLocaleDateString();
                 const time = date.toLocaleTimeString();
-                datesAndTimes.push(`${date.toLocaleDateString()} - ${time}`);
+                const recordType = i % 3 === 0 ? 'Entrada' : i % 3 === 1 ? 'Saída' : 'Intervalo';
+
+                if (!datesAndTimes[dateString]) {
+                    datesAndTimes[dateString] = [];
+                }
+
+                datesAndTimes[dateString].push(`${time} - ${recordType}`);
             }
 
-            datesAndTimes.forEach((dateTime, index) => {
-                const p = document.createElement('p');
-                p.textContent = `Registro ${index + 1}: ${dateTime}`;
-                p.style.display = 'inline-block';
-                p.style.marginRight = '10px';
+            for (const [date, records] of Object.entries(datesAndTimes)) {
+                const dateDiv = document.createElement('div');
+                dateDiv.textContent = date;
+                dateDiv.style.fontWeight = 'bold';
+                dateDiv.style.marginBottom = '10px';
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Excluir';
-                deleteButton.style.marginLeft = '10px';
-                deleteButton.addEventListener('click', function() {
-                    if (confirm('Tem certeza que deseja excluir este registro?')) {
-                        p.remove();
-                    }
+                const recordsDiv = document.createElement('div');
+                recordsDiv.style.marginBottom = '20px';
+
+                records.forEach((record, index) => {
+                    const p = document.createElement('p');
+                    p.textContent = `Registro ${index + 1}: ${record}`;
+                    p.style.display = 'inline-block';
+                    p.style.marginRight = '10px';
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Excluir';
+                    deleteButton.style.marginLeft = '10px';
+                    deleteButton.addEventListener('click', function() {
+                        if (confirm('Tem certeza que deseja excluir este registro?')) {
+                            p.remove();
+                        }
+                    });
+
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Editar';
+                    editButton.style.marginLeft = '10px';
+                    editButton.addEventListener('click', function() {
+                        const newRecord = prompt('Digite o novo registro:');
+                        if (newRecord) {
+                            p.textContent = `Registro ${index + 1}: ${newRecord}`;
+                        }
+                    });
+
+                    p.appendChild(deleteButton);
+                    p.appendChild(editButton);
+                    recordsDiv.appendChild(p);
                 });
 
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Editar';
-                editButton.style.marginLeft = '10px';
-                editButton.addEventListener('click', function() {
-                    const newDateTime = prompt('Digite o novo registro:');
-                    if (newDateTime) {
-                        p.textContent = `Registro ${index + 1}: ${newDateTime}`;
-                    }
-                });
-
-                p.appendChild(deleteButton);
-                p.appendChild(editButton);
-                datesAndTimesDiv.appendChild(p);
-            });
+                datesAndTimesDiv.appendChild(dateDiv);
+                datesAndTimesDiv.appendChild(recordsDiv);
+            }
 
             document.getElementById('search-input').addEventListener('input', function() {
                 const searchValue = this.value.toLowerCase();
