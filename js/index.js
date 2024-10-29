@@ -58,10 +58,12 @@ btnDialogBaterPonto.addEventListener("click", async () => {
 
     console.log(lastTypeRegister);
 
+
     let userCurrentPosition = await getCurrentPosition();
+    let dataRegistro = inputDataRegistro.value || getCurrentDate();
 
     let ponto = {
-        "data": getCurrentDate(),
+        "data": dataRegistro,
         "hora": getCurrentHour(),
         "localizacao": userCurrentPosition,
         "id": 1,
