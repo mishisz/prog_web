@@ -1,6 +1,6 @@
 .data-hora {
     text-align: center;
-    font-family: "Nanum Gothic Coding", monospace;
+    font-family: "Arial", sans-serif, monospace;
     font-weight: 400;
     font-style: normal;
 }
@@ -21,7 +21,7 @@
 
 #alerta-registro-ponto p {
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 1.1rem;
     text-align: center;
     font-family: "Nanum Gothic Coding", monospace;
@@ -74,4 +74,8 @@
 #btn-dialog-bater-ponto {
     padding: 20px;
     font-size: 1.3rem;
+}
+
+body {
+    background-color: rgb(255, 216, 238);
 }
