@@ -58,7 +58,18 @@
                     }
                 });
 
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.style.marginLeft = '10px';
+                editButton.addEventListener('click', function() {
+                    const newDateTime = prompt('Digite o novo registro:');
+                    if (newDateTime) {
+                        p.textContent = `Registro ${index + 1}: ${newDateTime}`;
+                    }
+                });
+
                 p.appendChild(deleteButton);
+                p.appendChild(editButton);
                 datesAndTimesDiv.appendChild(p);
             });
 
